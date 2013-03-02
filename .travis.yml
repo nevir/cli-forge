@@ -1,6 +1,6 @@
 language: ruby
 bundler_args: --without debugging development
-script: bundle exec rake ci
+script: bundle exec rake spec:ci
 rvm:
   - 1.8.7
   - 1.9.2
