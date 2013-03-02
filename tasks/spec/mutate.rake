@@ -38,7 +38,7 @@ namespace :spec do
       :killer   => Mutant::Killer::Rspec,
       :matcher  => matcher,
       :filter   => Mutant::Mutation::Filter::ALL,
-      :reporter => Mutant::Reporter::CLI.new(config),
+      :reporter => Mutant::Reporter::CLI.new(config)
     )
 
     ENV["MUTATION"] = "yes"
