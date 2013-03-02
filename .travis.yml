@@ -11,3 +11,7 @@ rvm:
   - jruby-18mode
   - jruby-19mode
   - ree
+  - topaz
+matrix:
+  allow_failures:
+    - rvm: topaz
