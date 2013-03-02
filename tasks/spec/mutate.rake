@@ -34,11 +34,11 @@ namespace :spec do
     end
 
     config.merge!(
-      strategy: Mutant::Strategy::Rspec::DM2.new(config),
-      killer:   Mutant::Killer::Rspec,
-      matcher:  matcher,
-      filter:   Mutant::Mutation::Filter::ALL,
-      reporter: Mutant::Reporter::CLI.new(config),
+      :strategy => Mutant::Strategy::Rspec::DM2.new(config),
+      :killer   => Mutant::Killer::Rspec,
+      :matcher  => matcher,
+      :filter   => Mutant::Mutation::Filter::ALL,
+      :reporter => Mutant::Reporter::CLI.new(config),
     )
 
     ENV["MUTATION"] = "yes"
