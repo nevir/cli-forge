@@ -13,7 +13,7 @@ group :test do
 
   # The preferred code mutation library.
   # MIT License - https://github.com/mbj/mutant/blob/master/LICENSE
-  gem "mutant", ">= 0.2.20",  "< 1.0.0"
+  gem "mutant", ">= 0.2.20",  "< 1.0.0", :platforms => :ruby_19
 
   # Cover all the things - https://github.com/colszowka/simplecov
   # MIT License - https://github.com/colszowka/simplecov/blob/master/LICENSE
