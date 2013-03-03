@@ -4,7 +4,7 @@ module CLIForge
   extend CLIForge::AutoloadConvention
 
   def self.start(bin_name=nil, &block)
-    config = CLIForge::Configuration.new
+    config = CLIForge::DefaultConfiguration.new
 
     config.search_paths = ENV["PATH"].split(":").uniq
 
