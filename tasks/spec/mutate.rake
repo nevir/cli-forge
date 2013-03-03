@@ -22,9 +22,28 @@ namespace :spec do
     # You can focus on a particular symbol/method by passing it to the task:
     # rake spec:mutate[AutoloadConvention#const_missing], for example.
     if args.focus_on
-      matcher = Mutant::Matcher.from_string("::CLIForge::#{args.focus_on}")
+      puts args.focus_on.inspect
+      # Method on CLIForge?
+      if args.focus_on.start_with?(".") || args.focus_on.start_with?("#")
+        matcher = Mutant::Matcher.from_string("::CLIForge#{args.focus_on}")
+
+      # Or regular constant?
+      else
+        matcher = Mutant::Matcher.from_string("::CLIForge::#{args.focus_on}")
+        # Force that symbol to load
+        const = CLIForge
+        args.focus_on[/^[^#\.]+/].split("::").each do |const_name|
+          const = const.const_get(const_name.to_sym)
+        end
+      end
+
+    # Otherwise we're doing a full mutation suite
     else
-      matcher = Mutant::Matcher::ObjectSpace.new(/\ACLIForge(::|#|\.).+\Z/)
+      matcher = Mutant::Matcher::ObjectSpace.new(/\ACLIForge.*/)
+      # Force everything to load
+      Dir["#{PROJECT_ROOT}/lib/cli_forge/**/*.rb"].each do |path|
+        require "cli_forge/#{File.basename(path, ".rb")}"
+      end
     end
 
     # Mutant doesn't have a public scripting API yet; so we're cheating.
