@@ -23,7 +23,7 @@ module CLIForge
 
   def self.caller_path(stack_line)
     return unless stack_line
-    stack_path = stack_line.split(":").first
+    stack_path = stack_line.split.first
 
     File.expand_path(File.dirname(stack_path))
   end
