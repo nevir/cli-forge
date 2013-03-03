@@ -16,7 +16,7 @@ group :test do
   gem "mutant", ">= 0.2.20", "< 1.0.0", :platforms => :ruby_19
 
   # TEMPORARY DEP
-  gem "to_source", git: "https://github.com/nevir/to_source", branch: "property_or_equals"
+  gem "to_source", :git => "https://github.com/nevir/to_source", :branch => "property_or_equals"
 
 
   # Cover all the things - https://github.com/colszowka/simplecov
