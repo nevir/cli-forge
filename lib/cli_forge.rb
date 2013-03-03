@@ -3,8 +3,6 @@ require "cli_forge/autoload_convention"
 module CLIForge
   extend CLIForge::AutoloadConvention
 
-  # class << self
-
   def self.start(bin_name=nil, &block)
     config = CLIForge::Configuration.new
     block.call(config) if block
@@ -13,15 +11,8 @@ module CLIForge
     CLIForge::Runner.new(config).start
   end
 
-  def doh
-    one.two ||= three || four
-  end
-
-private
-
   def self.guess_bin_name
     File.basename($0)
   end
 
-  # end
 end
