@@ -22,7 +22,6 @@ namespace :spec do
     # You can focus on a particular symbol/method by passing it to the task:
     # rake spec:mutate[AutoloadConvention#const_missing], for example.
     if args.focus_on
-      puts args.focus_on.inspect
       # Method on CLIForge?
       if args.focus_on.start_with?(".") || args.focus_on.start_with?("#")
         matcher = Mutant::Matcher.from_string("::CLIForge#{args.focus_on}")
