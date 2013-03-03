@@ -3,8 +3,6 @@ GLOBAL_SPEC_FILES = [
   ".rspec",
   %r{^spec/.*_helper\.rb$},
   %r{^spec/common/.*\.rb$},
-  "lib/cli_forge.rb",
-  "lib/cli_forge/autoload_convention.rb",
 ]
 
 def specs_for_path(path)
@@ -26,9 +24,8 @@ guard "spork", rspec_port: 2733 do
 end
 
 guard "rspec", cli: "--drb --drb-port 2733" do
-  GLOBAL_SPEC_FILES.each do |pattern|
-    watch(pattern) { "spec" }
-  end
+  watch("lib/cli_forge.rb") { "spec" }
+  watch("lib/cli_forge/autoload_convention.rb") { "spec" }
 
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$}) { |m| specs_for_path(m[1]) }
