@@ -38,7 +38,7 @@ group :debugging do
   gem "debugger", "~> 1.3", :platforms => :mri
 end
 
-group :development do
+group :guard do
   # A generic file system event handler; spin it up and see the tests fly
   # MIT License - https://github.com/guard/guard/blob/master/LICENSE
   gem "guard", "~> 1.6"
@@ -55,11 +55,27 @@ group :development do
   # MIT License - https://github.com/guard/guard-rspec/blob/master/LICENSE
   gem "guard-rspec", "~> 2.4"
 
-  # Growl notification protocol gem - give us fancy warnings when things go awry
-  # MIT License - https://github.com/snaka/ruby_gntp/blob/master/lib/ruby_gntp.rb
-  gem "ruby_gntp", "~> 0.3"
-
-  # FS event hooks for OS X
+  # File system event hooks for OS X
   # MIT License - https://github.com/thibaudgg/rb-fsevent/blob/master/LICENSE
-  gem "rb-fsevent", "~> 0.9", :require => RUBY_PLATFORM.include?("darwin") && "rb-fsevent"
+  gem "rb-fsevent", "~> 0.9"
+
+  # File system event hooks for Linux
+  # MIT License - https://github.com/nex3/rb-inotify/blob/master/MIT-LICENSE
+  gem "rb-inotify", "~> 0.9"
+
+  # File system event hooks for Windows
+  # MIT License - https://github.com/stereobooster/rb-fchange/blob/master/LICENSE.md
+  gem "rb-fchange", "~> 0.0"
+
+  # OS X 10.8+ notification center support
+  # MIT License - https://github.com/Springest/terminal-notifier-guard#license
+  gem "terminal-notifier-guard", "~> 1.5"
+
+  # libnotify bindings (Linux)
+  # MIT License - https://github.com/splattael/libnotify/blob/master/LICENSE
+  gem "libnotify", "~> 0.8"
+
+  # notifu adapter (Windows)
+  # Unknown License
+  gem "rb-notifu", "~> 0.0"
 end
