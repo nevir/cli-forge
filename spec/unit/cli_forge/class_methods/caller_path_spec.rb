@@ -29,4 +29,10 @@ describe CLIForge, ".caller_path" do
     expect(path).to eq(nil)
   end
 
+  it "should not expose fake paths as the current path" do
+    path = described_class.caller_path("(irb):3:in `irb_binding'")
+
+    expect(path).to eq(nil)
+  end
+
 end
