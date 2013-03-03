@@ -15,7 +15,10 @@ module CLIForge
     def const_missing(sym)
       full_sym   = "#{self.name}::#{sym}"
       path_parts = full_sym.split("::").map { |part|
-        part.gsub(/([^A-Z])([A-Z]+)/, "\\1_\\2").downcase
+        part.gsub! /([^A-Z])([A-Z]+)/,       "\\1_\\2" # OneTwo -> One_Two
+        part.gsub! /([A-Z]+)([A-Z][^A-Z]+)/, "\\1_\\2" # ABCOne -> ABC_One
+
+        part.downcase
       }
 
       require File.join(*path_parts)

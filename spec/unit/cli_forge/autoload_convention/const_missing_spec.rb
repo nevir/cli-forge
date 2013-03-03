@@ -40,6 +40,12 @@ describe CLIForge::AutoloadConvention, "#const_missing" do
     expect(namespace::ALLCAPS).to eq(:yelling)
   end
 
+  it "should split ACRONYMSEndingWithRegularNames" do
+    namespace.should_receive(:require).with("fixtures/autoload_convention/abc_one_two_three").and_call_original
+
+    expect(namespace::ABCOneTwoThree).to eq(:you_can_count!)
+  end
+
   it "shouldn't pick up constants in parent namespaces" do
     namespace.should_receive(:require).with("fixtures/autoload_convention/string").and_call_original
 
