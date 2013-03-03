@@ -56,10 +56,22 @@ describe CLIForge, ".start" do
       expect(@config.bin_name).to eq("awesomesauce")
     end
 
-    it "should pull search paths in order from PATH" do
-      ENV["PATH"] = "/usr/bin:/usr/local/bin:/foo/bar:/usr/bin"
+    it "should extract the caller path" do
+      ENV["PATH"] = ""
 
       described_class.start
+
+      expect(@config.search_paths).to eq([
+        File.dirname(__FILE__)
+      ])
+    end
+
+    it "should pull search paths in order from PATH" do
+      ENV["PATH"] = "/usr/bin:/usr/local/bin:/foo/bar:/usr/bin"
+      described_class.stub(:caller_path) { nil }
+
+      described_class.start
+
       expect(@config.search_paths).to eq([
         "/usr/bin",
         "/usr/local/bin",
