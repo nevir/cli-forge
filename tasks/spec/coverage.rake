@@ -8,7 +8,7 @@ namespace :spec do
     Rake::Task["spec"].execute
 
     if RUBY_PLATFORM.include? "darwin"
-      `open #{File.join(PROJECT_PATH, "coverage", "index.html")}`
+      `open #{File.join(PROJECT_ROOT, "coverage", "index.html")}`
     end
 
     ENV["COVERAGE"] = prev
