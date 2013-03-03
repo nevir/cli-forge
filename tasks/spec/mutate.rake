@@ -80,7 +80,7 @@ namespace :spec do
       folder.gsub(File::SEPARATOR, "::").gsub("_", "").downcase
     end
 
-    Mutant::Matcher::ObjectSpace.new(/CLIForge/)
+    Mutant::Matcher::ObjectSpace.new(/^CLIForge/)
   end
 
   def spec_filter_klass
