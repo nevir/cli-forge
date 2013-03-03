@@ -72,7 +72,7 @@ namespace :spec do
   def all_matcher
     # Force everything to load
     Dir["#{PROJECT_ROOT}/lib/cli_forge/**/*.rb"].each do |path|
-      require "cli_forge/#{File.basename(path, ".rb")}"
+      require path[/lib.(cli_forge..+)\.rb$/, 1]
     end
 
     unit_folders   = Dir["spec/unit/**/*/"].map { |f| f[/^spec.unit.(.+)./, 1] }
