@@ -15,6 +15,10 @@ group :test do
   # MIT License - https://github.com/mbj/mutant/blob/master/LICENSE
   gem "mutant", ">= 0.2.20", "< 1.0.0", :platforms => :ruby_19
 
+  # TEMPORARY DEP
+  gem "to_source", git: "https://github.com/nevir/to_source", branch: "property_or_equals"
+
+
   # Cover all the things - https://github.com/colszowka/simplecov
   # MIT License - https://github.com/colszowka/simplecov/blob/master/LICENSE
   gem "simplecov", "~> 0.7"
