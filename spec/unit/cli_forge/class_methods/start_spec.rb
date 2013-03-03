@@ -13,6 +13,20 @@ describe CLIForge, ".start" do
     }
   end
 
+  # Stub out our environment
+  around(:each) do |spec|
+    old_path, old_argv = ENV["PATH"], ARGV
+
+    begin
+      spec.run
+    ensure
+      ENV["PATH"] = old_path
+      Object.send(:remove_const, :ARGV)
+      ::ARGV = old_argv
+    end
+  end
+
+
   it "should not require any arguments" do
     mock_runner.should_receive(:start)
     described_class.should_receive(:guess_bin_name)
@@ -43,20 +57,23 @@ describe CLIForge, ".start" do
     end
 
     it "should pull search paths in order from PATH" do
-      begin
-        old_path = ENV["PATH"]
-        ENV["PATH"] = "/usr/bin:/usr/local/bin:/foo/bar:/usr/bin"
+      ENV["PATH"] = "/usr/bin:/usr/local/bin:/foo/bar:/usr/bin"
 
-        described_class.start
-        expect(@config.search_paths).to eq([
-          "/usr/bin",
-          "/usr/local/bin",
-          "/foo/bar"
-        ])
+      described_class.start
+      expect(@config.search_paths).to eq([
+        "/usr/bin",
+        "/usr/local/bin",
+        "/foo/bar"
+      ])
+    end
 
-      ensure
-        ENV["PATH"] = old_path
-      end
+    it "should extract ARGV" do
+      Object.send(:remove_const, :ARGV)
+      ::ARGV = ["my-bin", "sub-command", "--stuff"]
+
+      mock_runner.should_receive(:start).with(["my-bin", "sub-command", "--stuff"])
+
+      described_class.start
     end
 
   end

@@ -4,7 +4,7 @@ class CLIForge::Runner
     @config = config
   end
 
-  def start
+  def start(arguments)
 
   end
 

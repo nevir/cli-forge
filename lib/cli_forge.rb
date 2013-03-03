@@ -12,7 +12,7 @@ module CLIForge
 
     config.bin_name ||= bin_name || guess_bin_name
 
-    CLIForge::Runner.new(config).start
+    CLIForge::Runner.new(config).start(ARGV)
   end
 
   def self.guess_bin_name
