@@ -26,6 +26,7 @@ end
 guard "rspec", cli: "--drb --drb-port 2733" do
   watch("lib/cli_forge.rb") { "spec" }
   watch("lib/cli_forge/autoload_convention.rb") { "spec" }
+  watch(%r{^spec/fixtures/.*\.rb$}) { "spec" }
 
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$}) { |m| specs_for_path(m[1]) }
