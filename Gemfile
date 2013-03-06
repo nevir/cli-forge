@@ -13,11 +13,10 @@ group :test do
 
   # The preferred code mutation library.
   # MIT License - https://github.com/mbj/mutant/blob/master/LICENSE
-  gem "mutant", ">= 0.2.20", "< 1.0.0", :platforms => :ruby_19
+  gem "mutant", "~> 0.2", ">= 0.2.20", :platforms => :ruby_19
 
-  # TEMPORARY DEP
-  gem "to_source", :git => "https://github.com/nevir/to_source", :branch => "property_or_equals"
-
+  # Dependency of mutant; this version fixes some breaking source gen bugs.
+  gem "to_source", ">= 0.2.20"
 
   # Cover all the things - https://github.com/colszowka/simplecov
   # MIT License - https://github.com/colszowka/simplecov/blob/master/LICENSE
