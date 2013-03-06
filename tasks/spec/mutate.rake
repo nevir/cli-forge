@@ -40,6 +40,9 @@ namespace :spec do
 
   def mutant_supported?
     return false unless RUBY_VERSION.start_with?("1.9")
+    # TODO: Rubinius crashes under mutant:
+    # https://github.com/rubinius/rubinius/issues/2186
+    return false if RUBY_ENGINE == "rbx"
 
     begin
       return false unless RUBY_ENGINE == "ruby" || RUBY_ENGINE == "rbx"
