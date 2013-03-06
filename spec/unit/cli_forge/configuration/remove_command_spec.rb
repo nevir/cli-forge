@@ -16,4 +16,15 @@ describe CLIForge::Configuration, "#remove_command" do
     expect(subject.embedded_commands[:bar]).to eq(nil)
   end
 
+  it "should coerce string names to symbols" do
+    expect(subject.embedded_commands[:bar]).to eq(nil)
+
+    command = double("TestCommand")
+    subject.register_command(:bar, command)
+    subject.remove_command("bar")
+
+    expect(subject.embedded_commands[:bar]).to eq(nil)
+    expect(subject.embedded_commands["bar"]).to eq(nil)
+  end
+
 end

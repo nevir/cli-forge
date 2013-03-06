@@ -17,4 +17,13 @@ describe CLIForge::Configuration, "#remove_argument_filter" do
     expect(subject.argument_filters).to eq([])
   end
 
+  it "should coerce string names to symbols" do
+    expect(subject.argument_filters).to eq([])
+
+    subject.register_argument_filter(:hi) { "hi" }
+    subject.remove_argument_filter("hi")
+
+    expect(subject.argument_filters).to eq([])
+  end
+
 end
