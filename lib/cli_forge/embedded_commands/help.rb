@@ -5,9 +5,7 @@ class CLIForge::EmbeddedCommands::Help
   end
 
   def call(arguments)
-    command_set = CLIForge::CommandSet.new(@config)
-
-    puts command_set.all_sub_command_bins(@config.bin_name).inspect
+    puts "help and stuff"
   end
 
 end

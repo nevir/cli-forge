@@ -16,7 +16,8 @@ end
 
 Spork.prefork do
   # Allow requires relative to the spec dir
-  SPEC_ROOT = File.expand_path("..", __FILE__)
+  SPEC_ROOT    = File.expand_path("..", __FILE__)
+  FIXTURE_ROOT = File.join(SPEC_ROOT, "fixtures")
   $LOAD_PATH << SPEC_ROOT
 
   require "rspec"
